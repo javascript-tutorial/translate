@@ -1,25 +1,25 @@
 {
   "apps": [
     {
-      "name":               "javascript-tutorial-translate-hook",
-      "script":             "bin/server.js",
-      "instances":          "1",
-      "node_args":          "",
-      "exec_mode":          "cluster_mode",
+      "name": "javascript-tutorial-translate-hook",
+      "script": "bin/server.js",
+      "instances": "1",
+      "node_args": "",
+      "exec_mode": "cluster_mode",
       "max_memory_restart": "2G",
-      "kill_timeout":       5000,
-      "wait_ready":         true,
-      "log_file":           "/var/log/node/javascript.log",
-      "error_file":         "/var/log/node/javascript-err.log",
-      "out_file":           "/var/log/node/javascript-out.log",
-      "cwd":                "/js/javascript-tutorial-translate-hook",
-      "env":                {
-        "HOST":                        "127.0.0.1",
-        "PORT":                        "3000",
+      "kill_timeout": 5000,
+      "wait_ready": true,
+      "log_file": "/var/log/node/javascript.log",
+      "error_file": "/var/log/node/javascript-err.log",
+      "out_file": "/var/log/node/javascript-out.log",
+      "cwd": "/js/javascript-tutorial-translate-hook",
+      "env": {
+        "HOST": "::",
+        "PORT": "80",
         "PM2_GRACEFUL_LISTEN_TIMEOUT": 5000,
-        "PM2_GRACEFUL_TIMEOUT":        5000,
-        "ASSET_VERSIONING":            "file",
-        "NODE_ENV":                    "production"
+        "PM2_GRACEFUL_TIMEOUT": 5000,
+        "ASSET_VERSIONING": "file",
+        "NODE_ENV": "production"
       }
     }
   ]
