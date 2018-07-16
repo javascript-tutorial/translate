@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const config = require('../config');
-const debug = require('debug')('hook');
+const debug = require('debug')('handlers:hook');
 const onUpdateHook = require('../lib/onUpdateHook');
 
 exports.post = async function(ctx) {

@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name":               "javascript",
+      "name":               "javascript-tutorial-translate-hook",
       "script":             "bin/server.js",
       "instances":          "1",
       "node_args":          "",
