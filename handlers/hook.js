@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const config = require('../config');
 const debug = require('debug')('handlers:hook');
-const onUpdateHook = require('../lib/onUpdateHook');
+const updateRepo = require('../lib/updateRepo');
 
 exports.post = async function(ctx) {
 
@@ -56,6 +56,8 @@ exports.post = async function(ctx) {
   ctx.body = {ok: true};
 
   // don't wait for it! (async)
-  onUpdateHook(ctx.request.body);
+  await updateRepo(ctx.request.body.repository.name);
+
+  await Stats.instance().count(ctx.request.body.repository.name);
 
 };
