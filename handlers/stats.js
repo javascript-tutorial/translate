@@ -1,31 +1,58 @@
-const crypto = require('crypto');
 const config = require('../config');
 const debug = require('debug')('handlers:stats');
 const Stats = require('../lib/stats');
+const { repos } = config.secret;
 
-exports.get = async function(ctx) {
+exports.get = async function (ctx) {
 
-  let lang = ctx.params.lang;
+  const { langs } = ctx.request.query;
 
-  let repo, repoName;
+  const availableLangs = Object.keys(repos).map(k => repos[k].lang);
 
-  for([repoName, repo] of Object.entries(config.secret.repos)) {
-    if (repo.lang === lang) break;
+  let reqLangs;
+
+  if (langs) {
+    reqLangs = langs.split(',');
+    for (let i = 0, l = reqLangs.length; i < l; i++) {
+      let lang = reqLangs[i];
+      if (availableLangs.indexOf(lang) < 0 || lang === 'en') {
+        ctx.throw(404);
+      }
+    }
+  } else {
+    reqLangs = removeEngIn(availableLangs);
   }
 
-  if (!repo) {
-    this.throw(404);
-  }
+  debug('REQUEST LANGS', reqLangs);
 
-  let stats = Stats.instance().get(repoName);
+  let result = {};
 
-  let percentage = Math.floor(stats.filesTranslated / stats.filesTotal * 100);
+  reqLangs.forEach(lang => {
+    let repoName, repo;
 
-  ctx.type = 'image/svg+xml';
-  ctx.set('cache-control', 'public, max-age=300');
+    debug('lANG', lang);
+    
+    for ([repoName, repo] of Object.entries(repos)) {
+      if (repo.lang === lang) break;
+    }
 
-  ctx.body = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20">
-    <text x="0" y="20" color="red">${percentage}%</text>
-    </svg>`;
+    const stats = Stats.instance().get(repoName);
+    const { progress, translated } = stats;
+    
+    result[lang] = { progress, translated };
+  });
+
+  debug('RESULT', result);
+
+  ctx.body = result;
 
 };
+
+function removeEngIn(langs) {
+  const idx = langs.indexOf('en');
+  if (idx > -1) {
+    langs.splice(idx, 1);
+  }
+
+  return langs;
+}

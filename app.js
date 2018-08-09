@@ -8,7 +8,8 @@ const Router = require('koa-router');
 const router = new Router();
 
 router.post('/hook', require('./handlers/hook').post);
-router.get('/stats/:lang.svg', require('./handlers/stats').get);
+router.get('/stats', require('./handlers/stats').get);
+router.get('/stats/:lang.svg', require('./handlers/statsInSvg').get);
 
 app.use(logger());
 
