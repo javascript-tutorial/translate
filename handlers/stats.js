@@ -15,12 +15,12 @@ exports.get = async function (ctx) {
     reqLangs = langs.split(',');
     for (let i = 0, l = reqLangs.length; i < l; i++) {
       let lang = reqLangs[i];
-      if (availableLangs.indexOf(lang) < 0 || lang === 'en') {
+      if (!availableLangs.includes(lang)) {
         ctx.throw(404);
       }
     }
   } else {
-    reqLangs = removeEngIn(availableLangs);
+    reqLangs = availableLangs;
   }
 
   debug('REQUEST LANGS', reqLangs);
@@ -47,12 +47,3 @@ exports.get = async function (ctx) {
   ctx.body = result;
 
 };
-
-function removeEngIn(langs) {
-  const idx = langs.indexOf('en');
-  if (idx > -1) {
-    langs.splice(idx, 1);
-  }
-
-  return langs;
-}
