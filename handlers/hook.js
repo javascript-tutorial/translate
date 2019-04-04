@@ -55,9 +55,8 @@ exports.post = async function(ctx) {
 
   ctx.body = {ok: true};
 
-  // don't wait for it! (async)
   await updateRepo(ctx.request.body.repository.name);
 
-  await Stats.instance().count(ctx.request.body.repository.name);
+  await Stats.instance().gather(ctx.request.body.repository.name);
 
 };

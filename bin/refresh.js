@@ -17,7 +17,10 @@ const updateRepo = require('../lib/updateRepo');
   for (let repoName in config.secret.repos) {
     let repoConfig = config.secret.repos[repoName];
 
-    await Stats.instance().count(repoName);
+    // fixme
+    // if (repoConfig.lang !== 'zh') continue;
+
+    await Stats.instance().gather(repoName);
   }
 
 })().catch(console.error);

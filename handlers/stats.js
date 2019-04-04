@@ -31,14 +31,14 @@ exports.get = async function (ctx) {
     let repoName, repo;
 
     debug('lANG', lang);
-    
+
     for ([repoName, repo] of Object.entries(repos)) {
       if (repo.lang === lang) break;
     }
 
-    const stats = Stats.instance().get(repoName);
+    const stats = Stats.instance().get(repoName).translation;
     const { progress, translated } = stats;
-    
+
     result[lang] = { progress, translated };
   });
 

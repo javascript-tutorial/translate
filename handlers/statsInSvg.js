@@ -20,7 +20,7 @@ exports.get = async function(ctx) {
     if (repo.lang === lang) break;
   }
 
-  const { progress } = Stats.instance().get(repoName);
+  const { progress } = Stats.instance().get(repoName).translation;
 
   ctx.type = 'image/svg+xml';
   // ctx.set('cache-control', 'public, max-age=300');
