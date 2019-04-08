@@ -8,9 +8,9 @@ const Router = require('koa-router');
 const router = new Router();
 
 router.post('/hook', require('./handlers/hook').post);
-router.get('/stats', require('./handlers/stats').get);
+router.get('/translate', require('./handlers/translate').get);
 router.get('/contributors', require('./handlers/contributors').get);
-router.get('/stats/:lang.svg', require('./handlers/statsInSvg').get);
+router.get('/translate/:lang.svg', require('./handlers/translateInSvg').get);
 router.get('/cache-test', require('./handlers/cacheTest').get);
 
 app.use(logger());
