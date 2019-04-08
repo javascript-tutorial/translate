@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "javascript-tutorial-translate-hook",
+      "name": "javascript-tutorial-stats",
       "script": "bin/server.js",
       "instances": "1",
       "node_args": "",
@@ -12,7 +12,7 @@
       "log_file": "/var/log/node/javascript.log",
       "error_file": "/var/log/node/javascript-err.log",
       "out_file": "/var/log/node/javascript-out.log",
-      "cwd": "/js/javascript-tutorial-translate-hook",
+      "cwd": "/js/javascript-tutorial-stats",
       "env": {
         "HOST": "::",
         "PORT": "80",
