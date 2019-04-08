@@ -26,14 +26,15 @@ exports.get = async function (ctx) {
 
   debug('repo', repoName, repo);
 
-  const {files, emailToGithubUser} = Stats.instance().get(repoName).contributors;
+  const {files, emailToGithubUser, emailToName} = Stats.instance().get(repoName).contributors;
 
   let statsByAuthor = Object.create(null);
+  // let authorEmailToName = Object.create(null);
 
   // console.log(files);
 
   for(let file in files) {
-    let fileStats = files[file];
+    let {fileStats} = files[file];
     for (let author in fileStats) {
       statsByAuthor[author] = (statsByAuthor[author] || 0) + fileStats[author];
     }
@@ -90,6 +91,7 @@ exports.get = async function (ctx) {
 
   for (let value of result.values()) {
     value.percent = (value.linesCount / linesTotal * 100).toFixed(2);
+    value.name = emailToName[value.githubEmail];
   }
 
   // console.log(result.entries());
