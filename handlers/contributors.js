@@ -97,11 +97,12 @@ exports.get = async function (ctx) {
   }
 
   // console.log(result.entries());
-  contributors = new Map(Array.from(contributors).sort((a, b) => b[1].linesCount - a[1].linesCount));
 
-  contributors = mapToObj(contributors);
-  // console.log(result);
+  // use array to ensure sorting order
+  contributors = Array.from(contributors.values()).sort((a, b) => b.linesCount - a.linesCount);
 
-  ctx.body = {totalContributors, contributors};
+  // console.log(contributors);
+
+  ctx.body = {totalContributors, list: contributors};
 
 };
