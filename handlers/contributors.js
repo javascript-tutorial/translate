@@ -52,12 +52,14 @@ exports.get = async function (ctx) {
     linesTotal += linesCount;
   }
 
-  let result = new Map();
+  let contributors = new Map();
 
   // console.log("stats by author", statsByAuthor);
 
+  let totalContributors = 0;
   for (let githubEmail in statsByAuthor) {
     let linesCount = statsByAuthor[githubEmail];
+    totalContributors++;
 
     if (linesCount < 10) {
       // skip contribs who have less than 10 lines
@@ -69,10 +71,10 @@ exports.get = async function (ctx) {
     if (githubUser) {
       // we know github user with that email
       // let's group all results from other his emails under one entry
-      if (result.has(githubUser.login)) {
-        result.get(githubUser.login).linesCount += linesCount;
+      if (contributors.has(githubUser.login)) {
+        contributors.get(githubUser.login).linesCount += linesCount;
       } else {
-        result.set(githubUser.login, {
+        contributors.set(githubUser.login, {
           githubEmail,
           linesCount,
           githubUser
@@ -80,7 +82,7 @@ exports.get = async function (ctx) {
       }
     } else {
       // email is the key if we don't know such user
-      result.set(githubEmail, {
+      contributors.set(githubEmail, {
         githubEmail,
         linesCount,
         githubUser
@@ -89,16 +91,17 @@ exports.get = async function (ctx) {
   }
 
 
-  for (let value of result.values()) {
+  for (let value of contributors.values()) {
     value.percent = (value.linesCount / linesTotal * 100).toFixed(2);
     value.name = emailToName[value.githubEmail];
   }
 
   // console.log(result.entries());
-  result = new Map(Array.from(result).sort((a, b) => b[1].linesCount - a[1].linesCount));
+  contributors = new Map(Array.from(contributors).sort((a, b) => b[1].linesCount - a[1].linesCount));
 
+  contributors = mapToObj(contributors);
   // console.log(result);
 
-  ctx.body = mapToObj(result);
+  ctx.body = {totalContributors, contributors};
 
 };
