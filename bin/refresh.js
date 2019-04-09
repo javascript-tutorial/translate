@@ -19,7 +19,7 @@ const updateRepo = require('../lib/updateRepo');
     let repoConfig = config.secret.repos[repoName];
 
     // fixme
-    // if (repoConfig.lang !== 'zh') continue;
+    // if (repoConfig.lang !== 'ja') continue;
 
     await Stats.instance().gather(repoName);
   }

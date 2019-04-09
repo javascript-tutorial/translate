@@ -10,6 +10,7 @@ const router = new Router();
 router.post('/hook', require('./handlers/hook').post);
 router.get('/translate', require('./handlers/translate').get);
 router.get('/contributors', require('./handlers/contributors').get);
+router.get('/repo', require('./handlers/repo').get);
 router.get('/translate/:lang.svg', require('./handlers/translateInSvg').get);
 router.get('/cache-test', require('./handlers/cacheTest').get);
 
