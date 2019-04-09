@@ -2,7 +2,7 @@ const config = require('../config');
 const debug = require('debug')('handlers:stats');
 const Stats = require('../lib/stats');
 const { repos } = config.secret;
-let {mapToObj} = require('../lib/util');
+const request = require('request-promise');
 
 exports.get = async function (ctx) {
 
@@ -26,17 +26,19 @@ exports.get = async function (ctx) {
 
   debug('repo', repoName, repo);
 
-  const {files, emailToGithubUser, emailToName} = Stats.instance().get(repoName).contributors;
+  const {files} = Stats.instance().get(repoName).contributors;
 
   let statsByAuthor = Object.create(null);
-  // let authorEmailToName = Object.create(null);
+  let emailToAuthor = Object.create(null);
 
-  // console.log(files);
-
-  for(let file in files) {
-    let {fileStats} = files[file];
-    for (let author in fileStats) {
-      statsByAuthor[author] = (statsByAuthor[author] || 0) + fileStats[author];
+  for(let fileRelPath in files) {
+    let fileStats = files[fileRelPath];
+    for (let authorEmail in fileStats) {
+      let {author, linesCount} = fileStats[authorEmail];
+      if (!emailToAuthor[authorEmail] || !emailToAuthor[authorEmail].user) {
+        emailToAuthor[authorEmail] = author;
+      }
+      statsByAuthor[authorEmail] = (statsByAuthor[authorEmail] || 0) + linesCount;
     }
   }
 
@@ -47,62 +49,43 @@ exports.get = async function (ctx) {
     delete statsByAuthor['iliakan@users.noreply.github.com'];
   }
 
+  let contributorsTotal = 0;
   let linesTotal = 0;
   for (let linesCount of Object.values(statsByAuthor)) {
     linesTotal += linesCount;
+    contributorsTotal++;
   }
 
-  let contributors = new Map();
+  let contributors = [];
 
-  // console.log("stats by author", statsByAuthor);
+  //console.log("stats by author", statsByAuthor);
 
-  let totalContributors = 0;
-  for (let githubEmail in statsByAuthor) {
-    let linesCount = statsByAuthor[githubEmail];
-    totalContributors++;
+  for (let authorEmail in statsByAuthor) {
+    let linesCount = statsByAuthor[authorEmail];
 
     if (linesCount < 10) {
       // skip contribs who have less than 10 lines
       continue;
     }
 
-    let githubUser = emailToGithubUser[githubEmail];
+    contributors.push({
+      linesCount,
+      author: emailToAuthor[authorEmail]
+    });
 
-    if (githubUser) {
-      // we know github user with that email
-      // let's group all results from other his emails under one entry
-      if (contributors.has(githubUser.login)) {
-        contributors.get(githubUser.login).linesCount += linesCount;
-      } else {
-        contributors.set(githubUser.login, {
-          githubEmail,
-          linesCount,
-          githubUser
-        });
-      }
-    } else {
-      // email is the key if we don't know such user
-      contributors.set(githubEmail, {
-        githubEmail,
-        linesCount,
-        githubUser
-      });
-    }
   }
 
-
-  for (let value of contributors.values()) {
+  for (let value of contributors) {
     value.percent = (value.linesCount / linesTotal * 100).toFixed(2);
-    value.name = emailToName[value.githubEmail];
   }
 
   // console.log(result.entries());
 
   // use array to ensure sorting order
-  contributors = Array.from(contributors.values()).sort((a, b) => b.linesCount - a.linesCount);
+  contributors.sort((a, b) => b.linesCount - a.linesCount);
 
   // console.log(contributors);
 
-  ctx.body = {totalContributors, list: contributors};
+  ctx.body = {contributorsTotal,  contributors};
 
 };

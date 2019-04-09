@@ -8,6 +8,7 @@ const debug = require('debug')('init');
 const updateRepo = require('../lib/updateRepo');
 
 (async function () {
+
   for (let repoName in config.secret.repos) {
     let repoConfig = config.secret.repos[repoName];
 
