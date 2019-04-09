@@ -42,11 +42,48 @@ exports.get = async function (ctx) {
     }
   }
 
+  let idToEmails = Object.create(null);
+  for(let authorEmail in emailToAuthor) {
+    let author = emailToAuthor[authorEmail];
+    if (!author.user) continue;
+    if (!idToEmails[author.user.id]) {
+      idToEmails[author.user.id] = [authorEmail];
+    } else {
+      idToEmails[author.user.id].push(authorEmail);
+    }
+  }
+
+
+  for(let [id,emails] of Object.entries(idToEmails)) {
+    if (emails.length > 1) {
+      // same user two or more emails => remove extras
+      let emailMain = emails.filter(email => !email.endsWith('@users.noreply.github.com'))[0];
+      if (!emailMain) emailMain = emails[0];
+      let emailsSecondary = emails.filter(email => email !== emailMain);
+      for(let email of emailsSecondary) {
+        statsByAuthor[emailMain] += statsByAuthor[email];
+        delete statsByAuthor[email];
+      }
+    }
+  }
+
+  /*
+
+    // iliakan@users.noreply.github.com join with main acc iliakan@gmail.com
+  for(let authorEmail in emailToAuthor) {
+    let author = emailToAuthor[authorEmail];
+    if (author.user && author.user.login && !authorEmail.endsWith('@users.noreply.github.com')) {
+      if (statsByAuthor[author.user.login + '@users.noreply.github.com'] && statsByAuthor[authorEmail]) {
+        console.log("MATCH @", statsByAuthor[author.user.login + '@users.noreply.github.com'], emailToAuthor[author.user.login + '@users.noreply.github.com']);
+        console.log("MATCH MAIN", statsByAuthor[authorEmail], author)
+      }
+    }
+  }*/
+
   // remote iliakan@gmail.com, don't count original content author
   // all source code has him as the author, that's a lot already
   if (lang !== 'en' && lang !== 'ru') {
     delete statsByAuthor['iliakan@gmail.com']; //  (actually email below is used)
-    delete statsByAuthor['iliakan@users.noreply.github.com'];
   }
 
   let contributorsTotal = 0;
@@ -61,6 +98,7 @@ exports.get = async function (ctx) {
   //console.log("stats by author", statsByAuthor);
 
   for (let authorEmail in statsByAuthor) {
+    // console.log(authorEmail);
     let linesCount = statsByAuthor[authorEmail];
 
     if (linesCount < 10) {
