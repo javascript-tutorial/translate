@@ -15,7 +15,7 @@ exports.get = async function (ctx) {
   if (!stats) {
     ctx.throw(404);
   }
-  
+
   ctx.body = stats.repo;
 
 };
