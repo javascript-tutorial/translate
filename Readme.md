@@ -4,9 +4,9 @@ This repo hosts tools to translate the Modern JavaScript Tutorial <https://javas
 
 | Language | Github | Translated (%) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last&nbsp;Commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Published |
 |----------|--------|----------------|------------------------------------------------------------------------------------------|-----------|
-| Chinese | [Contribute](https://github.com/javascript-tutorial/zh.javascript.info) | ![](http://translate.javascript.info/translate/zh.svg) | ![](https://img.shields.io/github/last-commit/javascript-tutorial/zh.javascript.info.svg?maxAge=900&label=) | [zh.javascript.info](https://zh.javascript.info) |
-| Japanese | [Contribute](https://github.com/javascript-tutorial/ja.javascript.info) | ![](http://translate.javascript.info/translate/ja.svg) | ![](https://img.shields.io/github/last-commit/javascript-tutorial/ja.javascript.info.svg?maxAge=900&label=) | [ja.javascript.info](https://ja.javascript.info) |
-| Russian | [Contribute](https://github.com/javascript-tutorial/ru.javascript.info) | ![](http://translate.javascript.info/translate/ru.svg) | ![](https://img.shields.io/github/last-commit/javascript-tutorial/ru.javascript.info.svg?maxAge=900&label=) | [ru.javascript.info](https://ru.javascript.info) |
+| Chinese | [Contribute](https://github.com/javascript-tutorial/zh.javascript.info) | ![](https://translate.javascript.info/translate/percent/zh.svg) | ![](https://translate.javascript.info/translate/updated/zh.svg) | [zh.javascript.info](https://zh.javascript.info) |
+| Japanese | [Contribute](https://github.com/javascript-tutorial/ja.javascript.info) | ![](https://translate.javascript.info/translate/percent/ja.svg) | ![](https://translate.javascript.info/translate/updated/ja.svg) | [ja.javascript.info](https://ja.javascript.info) |
+| Russian | [Contribute](https://github.com/javascript-tutorial/ru.javascript.info) | ![](https://translate.javascript.info/translate/percent/ru.svg) | ![](https://translate.javascript.info/translate/updated/ru.svg) | [ru.javascript.info](https://ru.javascript.info) |
 
 ## Starting a new translation
 
