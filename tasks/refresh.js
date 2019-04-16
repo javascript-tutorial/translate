@@ -10,7 +10,6 @@ const updateRepo = require('../lib/updateRepo');
 module.exports = async function () {
 
   for (let lang in config.langs) {
-
     await updateRepo(lang);
   }
 
