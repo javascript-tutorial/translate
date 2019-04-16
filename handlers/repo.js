@@ -10,24 +10,12 @@ exports.get = async function (ctx) {
 
   debug('LANG', lang);
 
-  let repoName, repo;
+  const stats = Stats.instance().get(lang);
 
-  let found = false;
-  for ([repoName, repo] of Object.entries(repos)) {
-    if (repo.lang === lang) {
-      found = true;
-      break;
-    }
+  if (!stats) {
+    ctx.throw(404);
   }
-
-  if (!found) {
-    return; // 404
-  }
-
-  debug('repo', repoName, repo);
-
-  const stats = Stats.instance().get(repoName);
-
+  
   ctx.body = stats.repo;
 
 };
