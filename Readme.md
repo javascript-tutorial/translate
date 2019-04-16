@@ -11,14 +11,17 @@ This repo hosts tools to translate the Modern JavaScript Tutorial <https://javas
 | Russian | [Contribute](https://github.com/javascript-tutorial/ru.javascript.info) | ![](https://translate.javascript.info/translate/percent/ru.svg) | ![](https://translate.javascript.info/translate/updated/ru.svg) | [ru.javascript.info](https://ru.javascript.info) |
 | Spanish | [Contribute](https://github.com/javascript-tutorial/es.javascript.info) | ![](https://translate.javascript.info/translate/percent/es.svg) | ![](https://translate.javascript.info/translate/updated/zh.svg) |  |
 
+Can you help to translate? Please click the "Contribute" link above and join in!
 
 ## Starting a new translation
 
-If you would like to be the maintainer of a new translation, submit a PR adding a new file `{lang-code}.json`
+Your language is not in the list? 
+
+If you'd like to create a new translation, submit a PR adding a new file `{lang-code}.json`
 to the `langs` folder with the following information:
 
 * [Language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
-* List of maintainers
+* List of maintainers (one or more)
 
 For example:
 
@@ -49,20 +52,17 @@ See [Maintainer Tips](/MAINTAINER.md) for additional advice on how to manage you
 
 Happy translating!
 
-
 ## Adding a maintainer
 
 If you are currently a maintainer of a translation and want to add another member, send a pull request to this repo updating `langs/{lang-code}.json`, where `{lang-code}` is the language code of the repo you want to be a maintainer of.
 
-If you are interested in becoming a maintainer for a translation, please ask one of the current maintainers if they would like to add you. While different maintainers can have different requirements, usually they look for people who have already contributed to the translation already, either by translating or reviewing.
+If you are interested in becoming a maintainer for a translation, please ask one of the current maintainers if they would like to add you.
 
-## Before publishing
+## Publishing
 
-1. Review your translations and make sure that the pages listed in "Core Pages" are fully translated. Run the site yourself locally to make sure there are no bugs or missing translations.
-2. ask {TBD} to add {lang-code}.reactjs.org as a subdomain.
-3. submit a PR to [reactjs/reactjs.org](https://github.com/reactjs/reactjs.org) adding the language in the dropdown (once we make it).
-4. Celebrate! 🎉🌐
+When the translation is at least 50% finished, please create an issue in this repository with a request to publish. You're good! 👏
+
 
 ## Acknowledgements
 
-The syncing scripts and the translation bot are based off of and iterated upon [react.org-translation](https://github.com/reactjs/reactjs.org-translation) by @tesseralis.
+The syncing scripts and the translation bot are based off of [react.org-translation](https://github.com/reactjs/reactjs.org-translation) by @tesseralis.
