@@ -67,23 +67,11 @@ exports.get = async function (ctx) {
     }
   }
 
-  /*
 
-    // iliakan@users.noreply.github.com join with main acc iliakan@gmail.com
-  for(let authorEmail in emailToAuthor) {
-    let author = emailToAuthor[authorEmail];
-    if (author.user && author.user.login && !authorEmail.endsWith('@users.noreply.github.com')) {
-      if (statsByAuthor[author.user.login + '@users.noreply.github.com'] && statsByAuthor[authorEmail]) {
-        console.log("MATCH @", statsByAuthor[author.user.login + '@users.noreply.github.com'], emailToAuthor[author.user.login + '@users.noreply.github.com']);
-        console.log("MATCH MAIN", statsByAuthor[authorEmail], author)
-      }
-    }
-  }*/
-
-  // remote iliakan@gmail.com, don't count original content author
-  // all source code has him as the author, that's a lot already
+  // remove iliakan@gmail.com, the original content author
+  // so that only translators' lines count
   if (lang !== 'en' && lang !== 'ru') {
-    delete statsByAuthor['iliakan@gmail.com']; //  (actually email below is used)
+    delete statsByAuthor['iliakan@gmail.com'];
   }
 
   let contributorsTotal = 0;

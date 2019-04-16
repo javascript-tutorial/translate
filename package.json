@@ -1,5 +1,5 @@
 {
-  "name": "javascript-tutorial-stats",
+  "name": "translate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,17 +10,21 @@
   "license": "ISC",
   "dependencies": {
     "@octokit/graphql": "^2.1.0",
+    "@octokit/rest": "^16.24.1",
     "debug": "^3.1.0",
     "diff": "^3.5.0",
+    "ejs": "^2.6.1",
     "fs-extra": "^6.0.1",
     "glob": "^7.1.2",
+    "gulp": "^4.0.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "mz": "^2.7.0",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "yargs": "^13.2.2"
   },
   "devDependencies": {
     "request-debug": "^0.2.0"

@@ -7,7 +7,7 @@ const Stats = require('../lib/stats');
 const debug = require('debug')('init');
 const updateRepo = require('../lib/updateRepo');
 
-(async function () {
+module.exports = async function () {
 
   for (let repoName in config.secret.repos) {
     let repoConfig = config.secret.repos[repoName];
@@ -18,10 +18,9 @@ const updateRepo = require('../lib/updateRepo');
   for (let repoName in config.secret.repos) {
     let repoConfig = config.secret.repos[repoName];
 
-    // fixme
     // if (repoConfig.lang !== 'ja') continue;
 
     await Stats.instance().gather(repoName);
   }
 
-})().catch(console.error);
+};
