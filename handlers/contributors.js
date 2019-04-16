@@ -1,32 +1,19 @@
 const config = require('../config');
 const debug = require('debug')('handlers:stats');
 const Stats = require('../lib/stats');
-const { repos } = config.secret;
 const request = require('request-promise');
 
 exports.get = async function (ctx) {
 
-  const { lang } = ctx.request.query;
+  const { lang: langCode } = ctx.request.query;
 
-  debug('LANG', lang);
+  debug('contributors for lang', lang);
 
-  let repoName, repo;
-
-  let found = false;
-  for ([repoName, repo] of Object.entries(repos)) {
-    if (repo.lang === lang) {
-      found = true;
-      break;
-    }
-  }
-
-  if (!found) {
+  if (!config.langs[langCode]) {
     return; // 404
   }
 
-  debug('repo', repoName, repo);
-
-  const {files} = Stats.instance().get(repoName).contributors;
+  const {files} = Stats.instance().get(langCode).contributors;
 
   let statsByAuthor = Object.create(null);
   let emailToAuthor = Object.create(null);

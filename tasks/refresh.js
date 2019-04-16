@@ -9,18 +9,15 @@ const updateRepo = require('../lib/updateRepo');
 
 module.exports = async function () {
 
-  for (let repoName in config.secret.repos) {
-    let repoConfig = config.secret.repos[repoName];
+  for (let lang in config.langs) {
 
-    await updateRepo(repoName);
+    await updateRepo(lang);
   }
 
-  for (let repoName in config.secret.repos) {
-    let repoConfig = config.secret.repos[repoName];
+  for (let lang in config.langs) {
+    // if (lang !== 'zh') continue;
 
-    // if (repoConfig.lang !== 'ja') continue;
-
-    await Stats.instance().gather(repoName);
+    await Stats.instance().gather(lang);
   }
 
 };

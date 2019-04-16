@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 const config = {
   projectRoot: process.cwd(),
@@ -11,5 +12,11 @@ const config = {
   langMain: "en",
   teamMain: "translate"
 };
+
+config.langs = {};
+for(let file of fs.readdirSync(path.join(__dirname, 'langs'))) {
+  let lang = require(path.join(__dirname, 'langs', file));
+  config.langs[lang.code] = lang;
+}
 
 module.exports = config;

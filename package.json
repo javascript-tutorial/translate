@@ -21,6 +21,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
+    "moment": "^2.24.0",
     "mz": "^2.7.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
