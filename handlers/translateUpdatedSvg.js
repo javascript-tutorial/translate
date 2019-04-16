@@ -23,9 +23,14 @@ exports.get = async function(ctx) {
 
   // github will still proxy and cache it for a few minutes
   ctx.set('cache-control', 'no-cache');
-
+/*
   ctx.body = `<svg xmlns="http://www.w3.org/2000/svg" width="150" height="20">
     <text x="0" y="20" color="red">${updatedAt.format('DD.MM.YYYY HH:mm')} UTC</text>
+    </svg>`;
+*/
+
+  ctx.body = `<svg xmlns="http://www.w3.org/2000/svg" width="90" height="20">
+    <text x="0" y="20" color="red">${updatedAt.format('DD.MM.YYYY')}</text>
     </svg>`;
 
 };
