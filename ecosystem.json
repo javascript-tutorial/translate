@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "javascript-tutorial-stats",
+      "name": "translate",
       "script": "bin/server.js",
       "instances": "1",
       "node_args": "",
