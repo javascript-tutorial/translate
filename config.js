@@ -8,6 +8,7 @@ const config = {
   secret: require('/js/secret/translate'),
   owner: "iliakan",
   org: "javascript-tutorial",
+  botUser: "javascript-translate-bot",
   repoSuffix: "javascript.info",
   langMain: "en",
   teamMain: "translate"
