@@ -8,7 +8,7 @@ This repo hosts tools to translate the Modern JavaScript Tutorial <https://javas
 | French | [Contribute](https://github.com/javascript-tutorial/fr.javascript.info) | ![](https://translate.javascript.info/translate/percent/fr.svg) | ![](https://translate.javascript.info/translate/updated/fr.svg) |  |
 | Japanese | [Contribute](https://github.com/javascript-tutorial/ja.javascript.info) | ![](https://translate.javascript.info/translate/percent/ja.svg) | ![](https://translate.javascript.info/translate/updated/ja.svg) | [ja.javascript.info](https://ja.javascript.info) |
 | Romanian | [Contribute](https://github.com/javascript-tutorial/ro.javascript.info) | ![](https://translate.javascript.info/translate/percent/ro.svg) | ![](https://translate.javascript.info/translate/updated/ro.svg) |  |
-| Russian | [Contribute](https://github.com/javascript-tutorial/ru.javascript.info) | ![](https://translate.javascript.info/translate/percent/ru.svg) | ![](https://translate.javascript.info/translate/updated/ru.svg) | [ru.javascript.info](https://ru.javascript.info) |
+| Russian | [Contribute](https://github.com/javascript-tutorial/ru.javascript.info) | ![](https://translate.javascript.info/translate/percent/ru.svg) | ![](https://translate.javascript.info/translate/updated/ru.svg) | [learn.javascript.ru](https://learn.javascript.ru) |
 | Spanish | [Contribute](https://github.com/javascript-tutorial/es.javascript.info) | ![](https://translate.javascript.info/translate/percent/es.svg) | ![](https://translate.javascript.info/translate/updated/zh.svg) |  |
 
 Can you help to translate? Please click the "Contribute" link above and join in!
