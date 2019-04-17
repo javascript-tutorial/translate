@@ -1,6 +1,6 @@
 # Translation of the Modern JavaScript Tutorial
 
-This repo hosts tools to translate the Modern JavaScript Tutorial <https://javascript.info>.
+This repo hosts the general information and tools to translate the Modern JavaScript Tutorial <https://javascript.info>.
 
 | Language | Link to GitHub | Translated (%) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last&nbsp;Commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Published |
 |----------|--------|----------------|------------------------------------------------------------------------------------------|-----------|
@@ -11,7 +11,7 @@ This repo hosts tools to translate the Modern JavaScript Tutorial <https://javas
 | Russian | [Contribute](https://github.com/javascript-tutorial/ru.javascript.info) | ![](https://translate.javascript.info/translate/percent/ru.svg) | ![](https://translate.javascript.info/translate/updated/ru.svg) | [learn.javascript.ru](https://learn.javascript.ru) |
 | Spanish | [Contribute](https://github.com/javascript-tutorial/es.javascript.info) | ![](https://translate.javascript.info/translate/percent/es.svg) | ![](https://translate.javascript.info/translate/updated/zh.svg) |  |
 
-Can you help to translate? Please click the "Contribute" link above and join in!
+Help us to translate: click the "Contribute" link above and join in!
 
 ## Starting a new translation
 
