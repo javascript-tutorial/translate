@@ -68,4 +68,4 @@ When the translation is at least 50% finished, please create an issue in this re
 
 ## Acknowledgements
 
-The syncing scripts and the translation bot are based off of [react.org-translation](https://github.com/reactjs/reactjs.org-translation) by @tesseralis.
+The syncing scripts are based off of [react.org-translation](https://github.com/reactjs/reactjs.org-translation) by @tesseralis.
