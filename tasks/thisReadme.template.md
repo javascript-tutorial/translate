@@ -4,9 +4,9 @@ This repo hosts the general information and tools to translate the Modern JavaSc
 
 | Language | Link to GitHub | Translated (%) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last&nbsp;Commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Published |
 |----------|--------|----------------|------------------------------------------------------------------------------------------|-----------|
-<% for (let lang of langs) { %>
-| <%=lang.name%> | [Contribute](https://github.com/javascript-tutorial/<%=lang.code%>.javascript.info) | ![](https://translate.javascript.info/translate/percent/<%=lang.code%>.svg) | ![](https://translate.javascript.info/translate/updated/<%=lang.code%>.svg) | [<%=typeof lang.published === 'string' ? lang.published : `${lang.code}.javascript.info`%>](https://<%=typeof lang.published === 'string' ? lang.published : `${lang.code}.javascript.info`%) |
-<% } %>
+<% for (let lang of Object.values(langs).sort((a, b) => a.name > b.name)) { -%>
+| <%=lang.name%> | [Contribute](https://github.com/javascript-tutorial/<%=lang.code%>.javascript.info) | ![](https://translate.javascript.info/translate/percent/<%=lang.code%>.svg) | ![](https://translate.javascript.info/translate/updated/<%=lang.code%>.svg) | [<%=typeof lang.published === 'string' ? lang.published : `${lang.code}.javascript.info`%>](https://<%=typeof lang.published === 'string' ? lang.published : `${lang.code}.javascript.info`%>) |
+<% } -%>
 
 Help us to translate: click the "Contribute" link above and read how to do it. That's simple, join in!
 

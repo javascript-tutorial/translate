@@ -1,5 +1,5 @@
 const config = require("../config");
-const debug = require('debug')('init:createReadme');
+const debug = require('debug')('init:createThisReadme');
 const Octokit = require('@octokit/rest');
 const path = require('path');
 const fs = require('mz/fs');
@@ -21,6 +21,17 @@ module.exports = async function(langInfo) {
 
   fs.writeFileSync('./Readme.md', text);
 
-  run(`git commit -m up Readme.md`)
+  let hasChanges = await run(`git status --porcelain`);
+  
+  if (hasChanges) {
+
+    debug("Has changes, commit and push");
+
+    await run(`git commit -m up Readme.md`);
+    await run(`git push origin master`);
+  }
+
+  debug("Translate readme created");
+
 
 };
