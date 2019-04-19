@@ -1,10 +1,16 @@
 const gulp = require('gulp');
+const { series } = require('gulp');
 
 // delete all repos
 gulp.task('clean', require('./tasks/clean'));
 
 // pull all changes, recalculate stats
 gulp.task('refresh', require('./tasks/refresh'));
+
+gulp.task('reload', require('./tasks/reload'));
+
+// pull all changes, recalculate stats
+gulp.task('refresh-and-reload', series('refresh','createThisReadme','reload'));
 
 gulp.task('server', require('./tasks/server'));
 
