@@ -7,7 +7,7 @@ exports.get = async function (ctx) {
 
   const { lang: langCode } = ctx.request.query;
 
-  debug('contributors for lang', lang);
+  debug('contributors for lang', langCode);
 
   if (!config.langs[langCode]) {
     return; // 404
@@ -57,7 +57,7 @@ exports.get = async function (ctx) {
 
   // remove iliakan@gmail.com, the original content author
   // so that only translators' lines count
-  if (lang !== 'en' && lang !== 'ru') {
+  if (langCode !== 'en' && langCode !== 'ru') {
     delete statsByAuthor['iliakan@gmail.com'];
   }
 
