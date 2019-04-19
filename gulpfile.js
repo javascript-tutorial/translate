@@ -12,10 +12,13 @@ gulp.task('server', require('./tasks/server'));
 // create teams
 // add maintainers
 // *non-destructive
-gulp.task('initTranslation', require('./tasks/initTranslation'));
+gulp.task('createTranslation', require('./tasks/createTranslation'));
 
 // push readme from the template
-gulp.task('initReadme', require('./tasks/initReadme'));
+gulp.task('createReadme', require('./tasks/createReadme'));
+
+// create readme for this repo
+gulp.task('createThisReadme', require('./tasks/createThisReadme'));
 
 // sync with upstream, create pr
 gulp.task('sync', require('./tasks/sync'));

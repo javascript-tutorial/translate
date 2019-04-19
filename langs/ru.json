@@ -2,5 +2,6 @@
   "name": "Russian",
   "code": "ru",
   "maintainers": ["iliakan", "lex111"],
-  "published": true
+  "//": "An exception for Russian",
+  "published": "learn.javascript.ru"
 }
