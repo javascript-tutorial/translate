@@ -21,8 +21,8 @@ module.exports = async function(langInfo) {
 
   fs.writeFileSync('./Readme.md', text);
 
-  let hasChanges = await run(`git status --porcelain`);
-  
+  let hasChanges = await run(`git status --porcelain Readme.md`);
+
   if (hasChanges) {
 
     debug("Has changes, commit and push");

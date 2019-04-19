@@ -19,7 +19,7 @@ exports.get = async function(ctx) {
   // github will still proxy and cache it for a few minutes
   ctx.set('cache-control', 'no-cache');
 
-  ctx.body = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20">
+  ctx.body = `<svg xmlns="http://www.w3.org/2000/svg" width="34" height="20">
     <text x="0" y="20" color="red">${progress}%</text>
     </svg>`;
 

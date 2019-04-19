@@ -4,7 +4,7 @@ This repository hosts the translation of <https://javascript.info> in <%=langInf
 
 Please help us to make the translation better.
 
-- See the [<%=langInfo.name%> Translate Progress](https://github.com/javascript-tutorial/<%=langInfo.code%>.javascript.info/issues/<%=progressIssueNum%>) issue.
+- See the [<%=langInfo.name%> Translate Progress](https://github.com/javascript-tutorial/<%=langInfo.code%>.javascript.info/issues/<%=progressIssue.number%>) issue.
 - Choose an unchecked article you'd like to translate.
 - Add a comment to that issue to inform the maintainer that you're translating it.
 - Fork the repository, translate and send a PR when done.
