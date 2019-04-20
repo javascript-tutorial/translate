@@ -4,14 +4,16 @@ This repo hosts the general information and tools to translate the Modern JavaSc
 
 | Language | Link to GitHub | Translated (%) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last&nbsp;Commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Published |
 |----------|--------|----------------|------------------------------------------------------------------------------------------|-----------|
+| Portuguese (Portugal) | [Contribute](https://github.com/javascript-tutorial/pt-PT.javascript.info) | ![](https://translate.javascript.info/translate/percent/pt-PT.svg) | ![](https://translate.javascript.info/translate/updated/pt-PT.svg) | |
 | Chinese | [Contribute](https://github.com/javascript-tutorial/zh.javascript.info) | ![](https://translate.javascript.info/translate/percent/zh.svg) | ![](https://translate.javascript.info/translate/updated/zh.svg) |  [zh.javascript.info](https://zh.javascript.info)  |
 | French | [Contribute](https://github.com/javascript-tutorial/fr.javascript.info) | ![](https://translate.javascript.info/translate/percent/fr.svg) | ![](https://translate.javascript.info/translate/updated/fr.svg) | |
 | Italian | [Contribute](https://github.com/javascript-tutorial/it.javascript.info) | ![](https://translate.javascript.info/translate/percent/it.svg) | ![](https://translate.javascript.info/translate/updated/it.svg) | |
 | Japanese | [Contribute](https://github.com/javascript-tutorial/ja.javascript.info) | ![](https://translate.javascript.info/translate/percent/ja.svg) | ![](https://translate.javascript.info/translate/updated/ja.svg) |  [ja.javascript.info](https://ja.javascript.info)  |
-| Portuguese (Portugal) | [Contribute](https://github.com/javascript-tutorial/pt-PT.javascript.info) | ![](https://translate.javascript.info/translate/percent/pt-PT.svg) | ![](https://translate.javascript.info/translate/updated/pt-PT.svg) | |
+| Korean | [Contribute](https://github.com/javascript-tutorial/ko.javascript.info) | ![](https://translate.javascript.info/translate/percent/ko.svg) | ![](https://translate.javascript.info/translate/updated/ko.svg) | |
 | Romanian | [Contribute](https://github.com/javascript-tutorial/ro.javascript.info) | ![](https://translate.javascript.info/translate/percent/ro.svg) | ![](https://translate.javascript.info/translate/updated/ro.svg) | |
 | Russian | [Contribute](https://github.com/javascript-tutorial/ru.javascript.info) | ![](https://translate.javascript.info/translate/percent/ru.svg) | ![](https://translate.javascript.info/translate/updated/ru.svg) |  [learn.javascript.ru](https://learn.javascript.ru)  |
 | Spanish | [Contribute](https://github.com/javascript-tutorial/es.javascript.info) | ![](https://translate.javascript.info/translate/percent/es.svg) | ![](https://translate.javascript.info/translate/updated/es.svg) | |
+| Turkish | [Contribute](https://github.com/javascript-tutorial/tr.javascript.info) | ![](https://translate.javascript.info/translate/percent/tr.svg) | ![](https://translate.javascript.info/translate/updated/tr.svg) | |
 | Ukrainian | [Contribute](https://github.com/javascript-tutorial/uk.javascript.info) | ![](https://translate.javascript.info/translate/percent/uk.svg) | ![](https://translate.javascript.info/translate/updated/uk.svg) | |
 
 Help us to translate: click the "Contribute" link above and read how to do it. That's simple, join in!
@@ -68,4 +70,4 @@ When the translation is at least 50% finished, please create an issue in this re
 
 ## Acknowledgements
 
-The syncing scripts are based off of [react.org-translation](https://github.com/reactjs/reactjs.org-translation) by @tesseralis.
+The syncing scripts and the translation bot are based off of [react.org-translation](https://github.com/reactjs/reactjs.org-translation) by @tesseralis.
