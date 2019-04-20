@@ -37,9 +37,9 @@ Additional resources and examples for the article or the task, are also in the s
 
 ## Translation Tips
 
-The translation doesn't have to be word-by-word precise. It should be technically correct and explain well.
-
-If you see that the English version can be improved – great, please send a PR to it.
+- The translation doesn't have to be word-by-word precise. It should be technically correct and explain well.
+- If you see that the English version can be improved – great, please send a PR to it.
+- Please keep line breaks and paragraphs "as is": makes it easy to merge changes from English version into translation in the future. 
 
 ### Text in Code Blocks
 
