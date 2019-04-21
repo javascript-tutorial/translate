@@ -4,7 +4,7 @@ This repo hosts the general information and tools to translate the Modern JavaSc
 
 | Language | Link to GitHub | Translated (%) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last&nbsp;Commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Published |
 |----------|--------|----------------|------------------------------------------------------------------------------------------|-----------|
-<% for (let lang of Object.values(langs).sort((a, b) => a.name > b.name)) { -%>
+<% for (let lang of Object.values(langs).sort((a, b) => a.name > b.name ? 1 : -1)) { -%>
 <% if (lang.code == 'en') continue -%>
 | <%=lang.name%> | [Contribute](https://github.com/javascript-tutorial/<%=lang.code%>.javascript.info) | ![](https://translate.javascript.info/translate/percent/<%=lang.code%>.svg) | ![](https://translate.javascript.info/translate/updated/<%=lang.code%>.svg) | <% if (lang.published) { %> [<%=typeof lang.published === 'string' ? lang.published : `${lang.code}.javascript.info`%>](https://<%=typeof lang.published === 'string' ? lang.published : `${lang.code}.javascript.info`%>)  <% } %>|
 <% } -%>
