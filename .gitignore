@@ -2,3 +2,4 @@ repo/
 node_modules
 cache/
 .idea/
+package-lock.json
