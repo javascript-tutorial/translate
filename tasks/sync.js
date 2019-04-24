@@ -7,12 +7,17 @@ const sync = require('../lib/sync');
 module.exports = async () => {
 
   let args = require('yargs')
-    .demand('lang')
     .argv;
 
-  let langInfo = require('../langs/' + args.lang);
+  if (!args.lang && !args.all) {
+    throw new Error("Must have --lang or --all");
+  }
 
-  await sync(langInfo);
+  let langs = args.all ? Object.values(config.langs).filter(l => l.code !== 'en') : [config.langs[args.lang]];
+
+  for(let langInfo of langs) {
+    await sync(langInfo);
+  }
 
 };
 

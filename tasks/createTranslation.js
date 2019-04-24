@@ -14,21 +14,20 @@ const octokit = new Octokit({
 module.exports = async () => {
 
   let args = require('yargs')
-    .demand('lang')
     .argv;
 
-  let langInfo = require('../langs/' + args.lang);
+  if (!args.lang && !args.all) {
+    throw new Error("Must have --lang or --all");
+  }
 
-  const originalUrl = `https://github.com/${config.org}/${config.langMain}.${config.repoSuffix}`;
+  let langs = args.all ? Object.values(config.langs).filter(l => l.code !== 'en') : [config.langs[args.lang]];
 
-  const newRepoName = `${langInfo.code}.${config.repoSuffix}`;
-  const newRepoUrl = `https://github.com/${config.org}/${newRepoName}.git`;
+  for(let langInfo of langs) {
 
+    await createRepo(langInfo);
 
-  await createRepo(langInfo);
+    await createProgressIssue(langInfo);
 
-  await createProgressIssue(langInfo);
-
-  await createTeam(langInfo);
-
+    await createTeam(langInfo);
+  }
 };
