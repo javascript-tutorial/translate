@@ -20,6 +20,10 @@ module.exports = async () => {
     throw new Error("Must have --lang or --all");
   }
 
+  if (args.lang && !config.langs[args.lang]) {
+    throw new Error("No such language");
+  }
+
   let langs = args.all ? Object.values(config.langs).filter(l => l.code !== 'en') : [config.langs[args.lang]];
 
   for(let langInfo of langs) {

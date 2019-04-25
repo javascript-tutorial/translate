@@ -10,6 +10,10 @@ module.exports = async () => {
 
   let langInfo = require('../langs/' + args.lang);
 
+  if (!langInfo) {
+    throw new Error("No such language");
+  }
+
   await createReadme(langInfo);
 
 };
