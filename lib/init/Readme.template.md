@@ -44,6 +44,11 @@ Additional resources and examples for the article or the task, are also in the s
 
 **Please keep line breaks and paragraphs "as is": don't add newlines and don't remove existing ones.** Makes it easy to merge future changes from the English version into the translation. 
 
+### Glossary
+
+Agree on translations of terms like `resolved promise`, `slash`, `regexp`, etc. Look a good glossary, maybe there's one for your language already?
+Or create it, for all translators to use the same terms. 
+
 ### Text in Code Blocks
 
 - Translate comments.
