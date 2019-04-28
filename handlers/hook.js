@@ -1,7 +1,6 @@
 const crypto = require('crypto');
 const config = require('../config');
 const debug = require('debug')('handlers:hook');
-const updateRepo = require('../lib/updateRepo');
 
 exports.post = async function(ctx) {
 

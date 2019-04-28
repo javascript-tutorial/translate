@@ -102,6 +102,18 @@ For links to MDN, that are only partially translated, also use the language-spec
 
 If a linked article has no translated version, leave the link "as is".
 
+### Metadata
+
+Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
+
+```md
+importance: 5
+
+---
+...
+```
+
+Please don't translate "importance" (and other top metadata).
 
 ## Running locally
 

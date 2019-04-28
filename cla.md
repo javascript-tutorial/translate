@@ -4,9 +4,10 @@
 
 The intent of the Agreement is to clarify your responsibilities as a Contributor.
 
-In short, it allows others to freely use your Contributions and further build on them.
+In short, it allows us to use your Contributions in the tutorial and further build upon them.
 
-The Agreement is meant to protect You, the Users, the Contributors, and original authors of the Project from the malicious misdeeds of others. 
+The Agreement is meant to protect You, the Users, the Contributors, and original authors of the Project from the malicious misdeeds of others.
+ 
 The Agreement is not intended to restrict how You use Your own Contributions.
 
 The Agreement is written in plain English to be easily understood by You and all those affected by it. The terms defined below and used throughout this document are capitalized in order to reduce ambiguity, but they should be understood to have their usual colloquial meaning and the singular shall include the plural.
@@ -31,16 +32,16 @@ or you have clearly identified the source of the contribution and any license or
 ## Grant of Copyright License
 
 Subject to the terms and conditions of this agreement, 
-You grant to the Projects’ maintainers, contributors, users a perpetual, 
-worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, 
+You grant to the Projects’ maintainers a perpetual, worldwide, non-exclusive, no-charge, 
+royalty-free, irrevocable copyright license to reproduce, 
 prepare derivative works of, publicly display, publicly perform, sublicense, and distribute 
 Your contributions and such derivative works. Except for this license, 
 You reserve all rights, title, and interest in your contributions.
 
 ## Grant of Patent License
 
-Subject to the terms and conditions of this agreement, You grant to the Projects’ maintainers, contributors and users 
-a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, 
+Subject to the terms and conditions of this agreement, You grant to the Projects’ maintainers a perpetual, worldwide, 
+non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, 
 have made, use, offer to sell, sell, import, and otherwise transfer your contributions, where such license applies only to those patent 
 claims licensable by you that are necessarily infringed by your contribution or by combination of your contribution with the project 
 to which this contribution was submitted.
