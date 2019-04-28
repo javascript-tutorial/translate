@@ -1,7 +1,7 @@
 {
   "//": "Test language",
   "name": "Test",
-  "code": "br",
+  "code": "test",
   "maintainers": ["iliakan"],
   "published": false
 }
