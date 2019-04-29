@@ -5,7 +5,7 @@ const Octokit = require('@octokit/rest');
 const _ = require('lodash');
 const octokit = new Octokit({
   auth:     `token ${config.secret.github.token}`,
-  log: console,
+  //log: console,
   previews: ['hellcat-preview', 'mercy-preview'], // enables nested teams API
 });
 // chinese bot: https://github.com/fanyijihua/robot
