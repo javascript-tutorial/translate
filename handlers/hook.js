@@ -1,6 +1,28 @@
 const crypto = require('crypto');
 const config = require('../config');
 const debug = require('debug')('handlers:hook');
+const Octokit = require('@octokit/rest');
+const _ = require('lodash');
+const octokit = new Octokit({
+  auth:     `token ${config.secret.github.token}`,
+  log: console,
+  previews: ['hellcat-preview', 'mercy-preview'], // enables nested teams API
+});
+// chinese bot: https://github.com/fanyijihua/robot
+
+async function removeLabel(labels, params) {
+  return await octokit.issues.removeLabel({
+    owner:        config.org,
+    ...params
+  });
+}
+
+async function addLabels(params) {
+  return await octokit.issues.removeLabel({
+    owner:        config.org,
+    ...params
+  });
+}
 
 exports.post = async function(ctx) {
 
@@ -22,22 +44,17 @@ exports.post = async function(ctx) {
 
   //debug("github hook", ctx.request);
 
-  debug("Hook data", ctx.request.body);
-
-  let repo = config.secret.repos[ctx.request.body.repository.full_name];
-  if (!repo.lang) {
-    // __proto__ as repo name
-    this.throw(400);
-  }
 
   // koa-bodyparser gives that
   debug(ctx.request.rawBody);
 
   signature = signature.replace(/^sha1=/, '');
   let computedSignature = crypto
-    .createHmac('sha1', Buffer.from(repo.githubSecret, 'utf-8'))
+    .createHmac('sha1', Buffer.from(config.secret.github.hook, 'utf-8'))
     .update(ctx.request.rawBody)
     .digest('hex');
+
+  debug("Hook data", event, ctx.request.body);
 
   debug("Compare signature", computedSignature, signature);
 
@@ -45,17 +62,125 @@ exports.post = async function(ctx) {
     ctx.throw(400, 'X-Hub-Signature does not match blob signature');
   }
 
-  if (ctx.request.body.ref !== 'refs/heads/master') {
-    // ignore non-master pushes
-    ctx.body = {ok: true};
-    return;
+  let action = ctx.request.body.action;
+
+  // new pr
+  if (event === 'pull_request' && action === 'opened') {
+    await onPullOpen(ctx.request.body);
   }
 
+  // changes requested
+  if (event === 'pull_request_review' && action === 'submitted') {
+    await onPullRequestReviewSubmit(ctx.request.body);
+  }
 
-  ctx.body = {ok: true};
+  // /done
+  if (event === 'issue_comment' && action === 'created') {
+    await onIssueComment(ctx.request.body);
+  }
 
-  await updateRepo(ctx.request.body.repository.name);
-
-  await Stats.instance().gather(ctx.request.body.repository.name);
+  ctx.body = '';
 
 };
+
+async function onIssueComment({issue, repository, comment}) {
+  debug("Comment to Issue");
+
+  if (!issue.pull_request) {
+    return; // comment to issue, not to PR?
+  }
+
+  debug("Comment to PR");
+
+  let labels = _.keyBy(issue.labels, 'name');
+
+  if (comment.body.trim() === '/done') {
+    await removeLabel({
+      repo:         repository.name,
+      issue_number: issue.number,
+      name:         'changes requested',
+    });
+
+    await addLabels({
+      repo:   repository.name,
+      issue_number: issue.number,
+      labels: ['review needed'],
+    });
+  }
+}
+
+async function onPullOpen({repository, number}) {
+  debug("PR open");
+
+  await addLabels({
+    repo:   repository.name,
+    issue_number: number,
+    labels: ['review needed'],
+  });
+}
+
+async function onPullRequestReviewSubmit({repository, review, pull_request: {number, labels}}) {
+
+  debug("PR request submitted", review.state);
+
+  labels = _.keyBy(labels, 'name');
+
+  if (review.state === "changes_requested") {
+    await removeLabel({
+      repo:         repository.name,
+      issue_number: number,
+      name:         'review needed',
+    });
+
+    await addLabels({
+      repo:   repository.name,
+      issue_number: number,
+      labels: ['changes requested'],
+    });
+  }
+
+  if (review.state === "approved") {
+    await removeLabel({
+      repo:         repository.name,
+      issue_number: number,
+      name:         'changes requested',
+    });
+
+    debug("Labels", labels);
+
+    if (!labels['need +1']) {
+      await removeLabel({
+        repo:         repository.name,
+        issue_number: number,
+        name:         'review needed'
+      });
+      await addLabels({
+        repo:   repository.name,
+        issue_number: number,
+        labels: ['need +1'],
+      });
+    } else {
+      // maybe just merge on 2nd approval, so this never happens
+      await removeLabel({
+        repo:         repository.name,
+        issue_number: number,
+        name:         'need +1'
+      });
+      await addLabels({
+        repo:   repository.name,
+        issue_number: number,
+        labels: ['ready to merge']
+      });
+    }
+  }
+
+}
+
+
+/**
+ 1) каждый PR помечается review needed
+ 2) когда ревьювер request changes, PR помечается changes requested
+ 3) когда чел вносит изменения, он пишет /done, и PR помечается review needed
+ 4) когда изменения приняты (changes approved) PR помечается +1 review needed
+ 5) то же самое еще раз для второго review (edited)
+ */

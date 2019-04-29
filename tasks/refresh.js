@@ -5,12 +5,12 @@ const run = require('../lib/run');
 const execSync = require('child_process').execSync;
 const Stats = require('../lib/stats');
 const debug = require('debug')('init');
-const updateRepo = require('../lib/updateRepo');
+const updateLocalRepo = require('../lib/updateLocalRepo');
 
 module.exports = async function () {
 
   for (let lang in config.langs) {
-    await updateRepo(lang);
+    await updateLocalRepo(lang);
   }
 
   for (let lang in config.langs) {
