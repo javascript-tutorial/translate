@@ -4,7 +4,7 @@ const debug = require('debug')('handlers:hook');
 const Octokit = require('@octokit/rest');
 const _ = require('lodash');
 const octokit = new Octokit({
-  auth:     `token ${config.secret.github.token}`,
+  auth:     `token ${config.secret.github.tokenBot}`,
   //log: console,
   previews: ['hellcat-preview', 'mercy-preview'], // enables nested teams API
 });
@@ -109,6 +109,16 @@ async function onIssueComment({issue, repository, comment}) {
       repo:   repository.name,
       labels: ['review needed'],
     });
+
+    debug("create review request");
+
+    await octokit.pulls.createReviewRequest({
+      owner: config.org,
+      repo: repository.name,
+      pull_number: issue.number,
+      team_reviewers: 'translate-' + repository.name.split('.')[0]
+    });
+
   }
 }
 
@@ -118,6 +128,13 @@ async function onPullOpen({repository, pull_request}) {
   await addLabels(pull_request,{
     repo:   repository.name,
     labels: ['review needed'],
+  });
+
+  await octokit.pulls.createReviewRequest({
+    owner: config.org,
+    repo: repository.name,
+    pull_number: pull_request.number,
+    team_reviewers: 'translate-' + repository.name.split('.')[0]
   });
 }
 
@@ -156,6 +173,14 @@ async function onPullRequestReviewSubmit({repository, review, pull_request}) {
         repo:   repository.name,
         labels: ['need +1'],
       });
+
+      await octokit.pulls.createReviewRequest({
+        owner: config.org,
+        repo: repository.name,
+        pull_number: pull_request.number,
+        team_reviewers: 'translate-' + repository.name.split('.')[0]
+      });
+
     } else {
       // maybe just merge on 2nd approval, so this never happens
       await removeLabel(pull_request,{
