@@ -14,6 +14,7 @@
       "out_file": "/var/log/node/translate-out.log",
       "cwd": "/js/translate",
       "env": {
+        "DEBUG": "*",
         "HOST": "::",
         "PORT": "80",
         "PM2_GRACEFUL_LISTEN_TIMEOUT": 5000,
