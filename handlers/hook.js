@@ -10,16 +10,21 @@ const octokit = new Octokit({
 });
 // chinese bot: https://github.com/fanyijihua/robot
 
-async function removeLabel(labels, params) {
+async function removeLabel(issue, params) {
+  let hasLabel = issue.labels.some(label => label.name === params.name);
+  if (!hasLabel) return;
+
   return await octokit.issues.removeLabel({
     owner:        config.org,
+    issue_number: issue.number,
     ...params
   });
 }
 
-async function addLabels(params) {
-  return await octokit.issues.removeLabel({
+async function addLabels(issue, params) {
+  return await octokit.issues.addLabels({
     owner:        config.org,
+    issue_number: issue.number,
     ...params
   });
 }
@@ -95,80 +100,70 @@ async function onIssueComment({issue, repository, comment}) {
   let labels = _.keyBy(issue.labels, 'name');
 
   if (comment.body.trim() === '/done') {
-    await removeLabel({
+    await removeLabel(issue,{
       repo:         repository.name,
-      issue_number: issue.number,
       name:         'changes requested',
     });
 
-    await addLabels({
+    await addLabels(issue,{
       repo:   repository.name,
-      issue_number: issue.number,
       labels: ['review needed'],
     });
   }
 }
 
-async function onPullOpen({repository, number}) {
+async function onPullOpen({repository, pull_request}) {
   debug("PR open");
 
-  await addLabels({
+  await addLabels(pull_request,{
     repo:   repository.name,
-    issue_number: number,
     labels: ['review needed'],
   });
 }
 
-async function onPullRequestReviewSubmit({repository, review, pull_request: {number, labels}}) {
+async function onPullRequestReviewSubmit({repository, review, pull_request}) {
 
-  debug("PR request submitted", review.state, number);
+  debug("PR request submitted", review.state, pull_request.number);
 
-  labels = _.keyBy(labels, 'name');
+  let labels = _.keyBy(pull_request.labels, 'name');
 
   if (review.state === "changes_requested") {
-    await removeLabel({
+    await removeLabel(pull_request,{
       repo:         repository.name,
-      issue_number: number,
       name:         'review needed',
     });
 
-    await addLabels({
+    await addLabels(pull_request,{
       repo:   repository.name,
-      issue_number: number,
       labels: ['changes requested'],
     });
   }
 
   if (review.state === "approved") {
-    await removeLabel({
+    await removeLabel(pull_request,{
       repo:         repository.name,
-      issue_number: number,
       name:         'changes requested',
     });
 
     debug("Labels", labels);
 
     if (!labels['need +1']) {
-      await removeLabel({
+      await removeLabel(pull_request,{
         repo:         repository.name,
-        issue_number: number,
         name:         'review needed'
       });
-      await addLabels({
+      await addLabels(pull_request,{
         repo:   repository.name,
-        issue_number: number,
         labels: ['need +1'],
       });
     } else {
       // maybe just merge on 2nd approval, so this never happens
-      await removeLabel({
+      await removeLabel(pull_request,{
         repo:         repository.name,
-        issue_number: number,
         name:         'need +1'
       });
-      await addLabels({
+      await addLabels(pull_request,{
         repo:   repository.name,
-        issue_number: number,
         labels: ['ready to merge']
       });
     }
