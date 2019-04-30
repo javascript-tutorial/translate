@@ -159,7 +159,7 @@ async function onPullRequestReviewSubmit({repository, review, pull_request}) {
       owner: config.org,
       repo: repository.name,
       issue_number: pull_request.number,
-      body: `Please make requested changes. After it, add a comment "/done".  \nI'll ask for a new review :ghost:`
+      body: `Please make the requested changes. After it, add a comment "/done".  \nThen I'll ask for a new review :ghost:`
     });
 
   }
