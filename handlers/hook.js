@@ -172,14 +172,14 @@ async function onPullRequestReviewSubmit({repository, review, pull_request}) {
 
     debug("Labels", labels);
 
-    if (!labels['need +1']) {
+    if (!labels['needs +1']) {
       await removeLabel(pull_request,{
         repo:         repository.name,
         name:         'review needed'
       });
       await addLabels(pull_request,{
         repo:   repository.name,
-        labels: ['need +1'],
+        labels: ['needs +1'],
       });
 
       await octokit.pulls.createReviewRequest({
@@ -193,7 +193,7 @@ async function onPullRequestReviewSubmit({repository, review, pull_request}) {
       // maybe just merge on 2nd approval, so this never happens
       await removeLabel(pull_request,{
         repo:         repository.name,
-        name:         'need +1'
+        name:         'needs +1'
       });
       await addLabels(pull_request,{
         repo:   repository.name,

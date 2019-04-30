@@ -14,7 +14,7 @@ const config = {
   langMain: "en",
   teamMain: "translate",
   labels: _.keyBy([{
-    name: "need +1",
+    name: "needs +1",
     color: '3b22e2',
   }, {
     name: "review needed",
