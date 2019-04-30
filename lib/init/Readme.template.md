@@ -2,14 +2,14 @@
 
 This repository hosts the translation of <https://javascript.info> in <%=langInfo.name%>.
 
-Please help us to make the translation better.
+**That's how you can contribute:**
 
 - See the [<%=langInfo.name%> Translate Progress](https://github.com/javascript-tutorial/<%=langInfo.code%>.javascript.info/issues/<%=progressIssue.number%>) issue.
 - Choose an unchecked article you'd like to translate.
 - Add a comment to that issue to inform the maintainer that you're translating it.
 - Fork the repository, translate and send a PR when done.
 
-Also let others know what you're translating, in message boards or chats in your language. Invite them to join!
+**Let others know what you're translating, in message boards or chats in your language. Invite them to join!**
 
 🎉 Thank you!
 
@@ -18,6 +18,8 @@ Your name and the contribution size will appear in the contributors list at <htt
 <% } else { -%>
 Your name and the contribution size will appear in the "About project" page when the translation gets published.
 <% } -%>
+
+If you'd like to become a maintainer, have full access to the repository and review translations of others, write us at <https://github.com/javascript-tutorial/translate/issues/new>.
 
 P.S. The full list of languages can be found at <https://github.com/javascript-tutorial/translate>.
 
