@@ -121,7 +121,7 @@ async function onPullOpen({repository, number}) {
 
 async function onPullRequestReviewSubmit({repository, review, pull_request: {number, labels}}) {
 
-  debug("PR request submitted", review.state);
+  debug("PR request submitted", review.state, number);
 
   labels = _.keyBy(labels, 'name');
 
