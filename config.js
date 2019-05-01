@@ -1,10 +1,11 @@
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const _ = require('lodash');
 
 const config = {
   projectRoot: process.cwd(),
   cacheRoot: path.join(process.cwd(), 'cache'),
+  backupRoot: path.join(process.cwd(), 'backup'),
   repoRoot: path.join(process.cwd(), 'repo'),
   secret: require('/js/secret/translate'),
   owner: "iliakan",
@@ -27,6 +28,10 @@ const config = {
     color: '006400'
   }], 'name')
 };
+
+fs.ensureDirSync(config.cacheRoot);
+fs.ensureDirSync(config.backupRoot);
+fs.ensureDirSync(config.repoRoot);
 
 config.langs = {};
 for(let file of fs.readdirSync(path.join(__dirname, 'langs'))) {
