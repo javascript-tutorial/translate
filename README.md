@@ -1,6 +1,6 @@
 # (Moved) Translation of the Modern JavaScript Tutorial 
 
-This repo was used to host the general information the Modern JavaScript Tutorial translation.
+This repo was used to host the information about  the Modern JavaScript Tutorial translation.
 
 Right now we have it on-site: <https://javascript.info/translate>.
 
