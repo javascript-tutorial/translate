@@ -19,7 +19,7 @@ If you'd like to create a new translation, submit a PR adding a new file `{lang-
 to the `langs` folder with the following information:
 
 * [Language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
-* List of maintainers (one or more)
+* List of maintainers (one or more with github and email)
 
 For example:
 
@@ -27,7 +27,10 @@ For example:
 {
   "name": "English",
   "code": "en",
-  "maintainers": ["iliakan", "lex111"]
+  "maintainers": [{
+    github: "iliakan", 
+    email: "iliakan@gmail.com"
+  }]
 }
 ```
 

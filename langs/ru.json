@@ -1,7 +1,0 @@
-{
-  "name": "Russian",
-  "code": "ru",
-  "maintainers": ["iliakan", "lex111", "dandgerson"],
-  "//": "An exception for Russian",
-  "published": "learn.javascript.ru"
-}

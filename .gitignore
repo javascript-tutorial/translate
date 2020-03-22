@@ -2,4 +2,5 @@ repo/
 node_modules
 cache/
 .idea/
+.vs_code
 package-lock.json
